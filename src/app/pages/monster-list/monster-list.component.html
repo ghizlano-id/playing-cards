@@ -1,0 +1,41 @@
+<app-search-bar [(search)]="search"/>
+<div id="card-list">
+	<!-- <app-playing-card  *ngFor="let monster of filtredMonsters()" [monster]="monster"/> -->
+	 @for(monster of filtredMonsters(); track monster.name){
+		<app-playing-card [monster]="monster" routerLink="/monster/{{monster.id}}"/>
+	 }@empty {
+		<div class="centered">
+			No monster found !
+		</div>
+	 }
+</div>
+@if(filtredMonsters().length > 0){
+	<div class="centered">
+		Found {{filtredMonsters().length}} mounsters !
+	</div>
+}
+<!--
+@if(filtredMonsters().length == 0){
+	<div class="centered">
+		No monster found !
+	</div>
+}@else {
+	<div class="centered">
+		Found {{filtredMonsters().length}} mounsters !
+	</div>
+} -->
+<!--
+<div *ngIf="filtredMonsters().length == 0; then notFound else found" ></div>
+<ng-template #notFound>
+	<div class="centered">
+		No monster found !
+	</div>
+</ng-template>
+<ng-template #found>
+	<div class="centered">
+		Found {{filtredMonsters().length}} mounsters !
+	</div>
+</ng-template> 
+-->
+<div class="centered"><button [routerLink]="['/monster' ]">Add Monster</button></div><br/><br/>
+
